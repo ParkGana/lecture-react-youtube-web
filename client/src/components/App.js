@@ -5,6 +5,7 @@ import Navbar from "./views/Navbar/Navbar";
 import Footer from "./views/Footer/Footer";
 import LandingPage from './views/Landing/LandingPage';
 import SigninPage from './views/User/SigninPage';
+import SignupPage from './views/User/SignupPage';
 
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
             <Routes>
               <Route exact path="/" element={<LandingPage />} />
               <Route exact path="/signin" element={<SigninPage />} />
+              <Route exact path="/signup" element={<SignupPage />} />
             </Routes>
           <Footer />
         </Router>

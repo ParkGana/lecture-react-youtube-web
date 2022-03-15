@@ -1,0 +1,26 @@
+@import '~antd/dist/antd.css';
+
+
+.signup {
+    width: 100%;
+    min-height: calc(100vh - 70px - 5rem);
+    flex-direction: column;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.signup-form {
+    min-width: 350px;
+}
+
+.signup-title {
+    text-align: center;
+    font-size: 30px;
+    font-weight: bold;
+    margin-bottom: 0;
+}
+
+.signup-form-btn {
+    width: 100%;
+}

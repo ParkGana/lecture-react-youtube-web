@@ -9,7 +9,7 @@ function RightMenu(props) {
         <a href="/signin">Sign In</a>
       </Menu.Item>
       <Menu.Item key="signup">
-        <a href>Sign Up</a>
+        <a href="/signup">Sign Up</a>
       </Menu.Item>
     </Menu>
   )
