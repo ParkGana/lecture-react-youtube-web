@@ -1,0 +1,22 @@
+@import '~antd/dist/antd.css';
+
+
+.footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-top: solid 1px #E8E8E8;
+    box-shadow: 0 0 30px #F3F1F1;
+    background-color: white;
+    width: 100%;
+    padding:20px;
+}
+
+.footer p {
+    margin: 0;
+    font-size: 15px;
+}
+
+.footer p span {
+    padding: 0 5px;
+}
