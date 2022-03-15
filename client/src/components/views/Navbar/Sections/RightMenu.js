@@ -6,7 +6,7 @@ function RightMenu(props) {
   return (
     <Menu mode={props.mode}>
       <Menu.Item key="signin">
-        <a href>Sign In</a>
+        <a href="/signin">Sign In</a>
       </Menu.Item>
       <Menu.Item key="signup">
         <a href>Sign Up</a>
