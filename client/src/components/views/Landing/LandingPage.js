@@ -1,5 +1,7 @@
 import React from 'react';
 
+import Auth from '../../../hoc/auth';
+
 // import '../../css/LandingPage.css';
 
 
@@ -13,4 +15,4 @@ function LandingPage() {
     )
 }
 
-export default LandingPage;
+export default Auth(LandingPage, null);

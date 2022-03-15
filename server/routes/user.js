@@ -62,4 +62,19 @@ router.get('/signout', auth, (req, res) => {
     });
 });
 
+/****************************************************************************************************
+ * 권한 확인
+ ****************************************************************************************************/
+router.get('/auth', auth, (req, res) => {
+    console.log('안녕');
+    res.status(200).json({
+        _id: req.user._id,
+        email: req.user.email,
+        name: req.user.name,
+        role: req.user.role,
+        isAuth: true,
+        isAdmin: req.user.role === 0 ? false : true
+    });
+});
+
 module.exports = router;
