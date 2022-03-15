@@ -92,6 +92,24 @@ userSchema.methods.generateToken = function(cb) {
     });
 }
 
+/****************************************************************************************************
+ * 토큰 확인
+ ****************************************************************************************************/
+userSchema.statics.findByToken = function(token, cb) {
+    var user = this;
+
+    // 토큰 복호화
+    jwt.verify(token, 'secret', function(err, decoded) {
+        if(err) return cb(err);
+        
+        // 토큰 값을 복호화하여 _id 값을 구한 뒤 토큰 값이 일치하는지 확인
+        user.findOne({ '_id': decoded, 'token': token }, function(err, userInfo) {
+            if(err) return cb(err);
+            cb(null, userInfo);
+        });
+    });
+}
+
 
 const User = mongoose.model('User', userSchema);
 
