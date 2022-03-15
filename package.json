@@ -20,6 +20,7 @@
   "homepage": "https://github.com/ParkGana/web_video#readme",
   "dependencies": {
     "express": "^4.17.3",
+    "mongoose": "^6.2.6",
     "nodemon": "^2.0.15"
   }
 }
