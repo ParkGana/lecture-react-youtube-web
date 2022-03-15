@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const port = 5000;
 const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
 
 const config = require('./configs/key');
 
@@ -17,6 +18,16 @@ mongoose.connect(config.mongoURI, {
 })
 .then(() => console.log('MongoDB is connected!'))
 .catch(err => console.log('MongoDB connection error : ' + err));
+
+
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+
+
+/****************************************************************************************************
+ * 라우터 설정
+ ****************************************************************************************************/
+app.use('/api/user/', require('./routes/user'));
 
 
 app.get('/', (req, res) => {
