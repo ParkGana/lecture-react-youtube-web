@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import Axios from 'axios';
 import { Form, Input, Button } from 'antd';
 
+import Auth from '../../../hoc/auth';
 import { SERVER_USER } from '../../Config';
 
 import '../../css/SigninPage.css';
@@ -72,4 +73,4 @@ function SigninPage() {
     )
 }
 
-export default SigninPage;
+export default Auth(SigninPage, false);
