@@ -1,0 +1,54 @@
+@import '~antd/dist/antd.css';
+
+
+.video-upload {
+    width: 100%;
+    min-height: calc(100vh - 70px - 5rem);
+    flex-direction: column;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.video-upload h2 {
+    text-align: center;
+    font-size: 30px;
+    font-weight: bold;
+    padding: 10px;
+}
+
+.video-upload-form {
+
+}
+
+.video-upload-dropzone {
+    display: flex;
+    justify-content: space-between;
+}
+
+.video-upload-dropzone div {
+    width: 480px;
+    height: 270px;
+    border: 1px solid lightgray;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    margin: 20px;
+}
+
+.video-upload-input-title, .video-upload-input-description {
+    width: calc(100% - 40px);
+    margin: 0 20px;
+}
+
+.video-upload-select-privacy, .video-upload-select-category {
+    width: calc(50% - 40px);
+    margin: 0 20px;
+    text-align: left;
+}
+
+.video-upload-form-btn {
+    width: calc(100% - 40px);
+    margin: 30px 20px 50px 20px;
+}

@@ -6,6 +6,7 @@ import Footer from "./views/Footer/Footer";
 import LandingPage from './views/Landing/LandingPage';
 import SigninPage from './views/User/SigninPage';
 import SignupPage from './views/User/SignupPage';
+import VideoUploadPage from './views/Video/VideoUploadPage';
 
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
               <Route exact path="/" element={<LandingPage />} />
               <Route exact path="/signin" element={<SigninPage />} />
               <Route exact path="/signup" element={<SignupPage />} />
+              <Route exact path="/video/upload" element={<VideoUploadPage />} />
             </Routes>
           <Footer />
         </Router>
