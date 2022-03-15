@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "node": "node ./server/index.js",
-    "nodemon": "nodemon ./server/index.js"
+    "nodemon": "nodemon ./server/index.js",
+    "start": "concurrently \"npm run nodemon\" \"npm run start --prefix client\""
   },
   "repository": {
     "type": "git",
@@ -19,6 +20,7 @@
   },
   "homepage": "https://github.com/ParkGana/web_video#readme",
   "dependencies": {
+    "concurrently": "^7.0.0",
     "express": "^4.17.3",
     "mongoose": "^6.2.6",
     "nodemon": "^2.0.15"
