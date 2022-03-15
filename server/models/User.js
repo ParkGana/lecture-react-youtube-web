@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
+const jwt = require('jsonwebtoken');
+const moment = require('moment');
 
 
 const userSchema = mongoose.Schema({
@@ -60,6 +62,35 @@ userSchema.pre('save', function(next) {
         next();
     }
 });
+
+/****************************************************************************************************
+ * 비밀번호 확인
+ ****************************************************************************************************/
+userSchema.methods.comparePassword = function(plainPassword, cb) {
+    // 비밀번호를 복호화한 뒤 입력한 비밀번호 값과 일치하는지 확인
+   bcrypt.compare(plainPassword, this.password, function(err, isMatch) {
+       if(err) return cb(err);
+       cb(null, isMatch);
+   });
+}
+
+/****************************************************************************************************
+ * 토큰 생성
+ ****************************************************************************************************/
+userSchema.methods.generateToken = function(cb) {
+    var user = this;
+
+    var token = jwt.sign(user._id.toHexString(), 'secret');
+    var oneHour = moment().add(1, 'hour').valueOf();
+
+    user.token = token;
+    user.tokenExp = oneHour;
+
+    user.save(function(err, userInfo) {
+        if(err) return cb(err);
+        cb(null, userInfo);
+    });
+}
 
 
 const User = mongoose.model('User', userSchema);
