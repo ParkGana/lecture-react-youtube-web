@@ -99,7 +99,7 @@ function VideoUploadPage() {
         if(Category === -1) return alert('카테고리를 선택해주세요.');
 
         const variables = {
-            user: user.userData._id,
+            uploader: user.userData._id,
             title: Title,
             description: Description,
             privacy: Privacy,
