@@ -2,12 +2,15 @@ import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from "react-router-dom";
 import Axios from 'axios';
-import { Form, Input, Button } from 'antd';
+import { Form, Input, Button, Card, Avatar } from 'antd';
 import { EditOutlined } from '@ant-design/icons';
 
 import { SERVER_COMMENT } from '../../../Config';
 
+import ParentCommentList from '../Sections/ParentCommentList';
+
 const { TextArea } = Input;
+const { Meta } = Card;
 
 
 function Comment(props) {
@@ -60,6 +63,14 @@ function Comment(props) {
                     <Button className="video-detail-comment-form-btn" type="primary" htmlType="submit"><EditOutlined /></Button>
                 </Form.Item>
             </Form>
+
+            {props.comments && props.comments.map((comment, index) => (
+                (!comment.parentCommentId &&
+                    <React.Fragment key="index">
+                        <ParentCommentList writer={comment.writer} content={comment.content} />
+                    </React.Fragment>
+                )
+            ))}
         </div>
     )
 }

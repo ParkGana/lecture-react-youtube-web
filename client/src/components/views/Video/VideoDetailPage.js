@@ -4,7 +4,7 @@ import Axios from 'axios';
 import { Row, Col } from 'antd';
 
 import Auth from '../../../hoc/auth';
-import { SERVER_VIDEO } from '../../Config';
+import { SERVER_VIDEO, SERVER_COMMENT } from '../../Config';
 
 import MainVideo from './Sections/MainVideo';
 import SideVideoList from './Sections/SideVideoList';
@@ -19,6 +19,7 @@ function VideoDetailPage() {
     const [Video, setVideo] = useState([]);
     const [Videos, setVideos] = useState([]);
     const [MainVideoId, setMainVideoId] = useState('');
+    const [Comments, setComments] = useState([]);
 
     useEffect(() => {
         setMainVideoId(videoId);
@@ -47,6 +48,16 @@ function VideoDetailPage() {
                 alert('영상 정보를 가져오는데 실패하였습니다.');
             }
         });
+
+        Axios.post(`${SERVER_COMMENT}/getComments`, variables)
+        .then(response => {
+            console.log(response.data);
+            if (response.data.getCommentsSuccess) {
+                setComments(response.data.comments);
+            } else {
+                alert('댓글 목록을 가져오는데 실패하였습니다.');
+            }
+        });
     }, []);
 
     return (
@@ -60,7 +71,7 @@ function VideoDetailPage() {
                                     <MainVideo uploader={video.uploader} title={video.title} description={video.description} views={video.views} videoPath={video.videoPath} createdAt={video.createdAt} />
                                 </React.Fragment>
                             ))}
-                            {MainVideoId !== '' && <Comment videoId={MainVideoId} />}
+                            {MainVideoId !== '' && <Comment videoId={MainVideoId} comments={Comments} />}
                         </Col>
                         <Col lg={8} xs={24}>
                             <div className="video-detail-side">
