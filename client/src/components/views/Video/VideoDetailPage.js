@@ -64,21 +64,11 @@ function VideoDetailPage() {
                 <div className="video-detail">
                     <Row gutter={[16, 16]}>
                         <Col lg={16} xs={24}>
-                            {Video && Video.map((video, index) => (
-                                <React.Fragment key={index}>
-                                    <MainVideo uploader={video.uploader} title={video.title} description={video.description} views={video.views} videoPath={video.videoPath} createdAt={video.createdAt} />
-                                </React.Fragment>
-                            ))}
-                            {MainVideoId !== '' && <Comment videoId={MainVideoId} comments={Comments} />}
+                            <MainVideo video={Video} />
+                            <Comment videoId={MainVideoId} comments={Comments} />
                         </Col>
                         <Col lg={8} xs={24}>
-                            <div className="video-detail-side">
-                                {MainVideoId !== '' && Videos && Videos.map((video, index) => (
-                                    <React.Fragment key={index}>
-                                       <SideVideoList mainVideo={MainVideoId} videoId={video._id} uploader={video.uploader} title={video.title} duration={video.duration} views={video.views} thumbnailPath={video.thumbnailPath} createdAt={video.createdAt} />
-                                    </React.Fragment>
-                                ))}
-                            </div>
+                            <SideVideoList mainVideoId={MainVideoId} videos={Videos} />
                         </Col>
                     </Row>
                 </div>

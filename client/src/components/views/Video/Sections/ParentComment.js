@@ -7,7 +7,7 @@ import { LikeOutlined, DislikeOutlined, EditOutlined, CaretDownOutlined, CaretUp
 
 import { SERVER_COMMENT } from '../../../Config';
 
-import ChildCommentList from '../Sections/ChildCommentList';
+import ChildComment from './ChildComment';
 
 const { Meta } = Card;
 const { TextArea } = Input;
@@ -19,20 +19,20 @@ function ParentCommentList(props) {
     const user = useSelector(state => state.user);
 
     const [CommentRe, setCommentRe] = useState('');
-    const [OpenChildComment, setOpenChildComment] = useState(false);
-    const [OpenCommentRe, setOpenCommentRe] = useState(false);
     const [CommentReNumber, setCommentReNumber] = useState(0);
+    const [OpenChildCommentWrite, setOpenChildCommentWrite] = useState(false);
+    const [OpenChildComment, setOpenChildComment] = useState(false);
 
     const onChangeCommentRe = (e) => {
         setCommentRe(e.currentTarget.value);
     }
 
-    const onToggleChildComment = (e) => {
-        setOpenChildComment(!OpenChildComment);
+    const onToggleChildCommentWrite = (e) => {
+        setOpenChildCommentWrite(!OpenChildCommentWrite);
     }
 
-    const onToggleCommentRe = (e) => {
-        setOpenCommentRe(!OpenCommentRe);
+    const onToggleChildComment = (e) => {
+        setOpenChildComment(!OpenChildComment);
     }
 
     const onWriteCommentRe = (e) => {
@@ -42,8 +42,8 @@ function ParentCommentList(props) {
             const variables = {
                 writer: user.userData._id,
                 content: CommentRe,
-                videoId: props.videoId,
-                parentCommentId: props.commentId
+                videoId: props.comment.videoId,
+                parentCommentId: props.comment._id
             }
     
             Axios.post(`${SERVER_COMMENT}/writeComment`, variables)
@@ -65,7 +65,7 @@ function ParentCommentList(props) {
         let number = 0;
 
         props.comments.map((comment) => {
-            if (props.commentId === comment.parentCommentId) {
+            if (props.comment._id === comment.parentCommentId) {
                 number++;
             }
         });
@@ -75,15 +75,15 @@ function ParentCommentList(props) {
 
     return (
         <div className="video-detail-comment-parent">
-            <Meta avatar={<Avatar src={props.writer.profilePath} />} title={props.writer.name} />
-            <p>{props.content}</p>
+            <Meta avatar={<Avatar src={props.comment.writer.profilePath} />} title={props.comment.writer.name} />
+            <p>{props.comment.content}</p>
             <p>
                 <span></span>
                 <span><LikeOutlined /></span>
                 <span><DislikeOutlined /></span>
-                <span onClick={onToggleChildComment}>답글 작성</span>
+                <span onClick={onToggleChildCommentWrite}>답글 작성</span>
             </p>
-            {OpenChildComment &&
+            {OpenChildCommentWrite &&
                 <Form className="video-detail-comment-child-form" autoComplete="off" onFinish={onWriteCommentRe}>
                     <Form.Item>
                         <TextArea placeholder="Write some comments" value={CommentRe} onChange={onChangeCommentRe} />
@@ -94,17 +94,19 @@ function ParentCommentList(props) {
                 </Form>
             }
             {CommentReNumber !== 0 &&
-                <div className="video-detail-comment-child-open" onClick={onToggleCommentRe}>답글 {CommentReNumber}개 {OpenCommentRe ? <CaretUpOutlined /> : <CaretDownOutlined />}</div>
+                <div className="video-detail-comment-child-open" onClick={onToggleChildComment}>답글 {CommentReNumber}개 {OpenChildComment ? <CaretUpOutlined /> : <CaretDownOutlined />}</div>
             }
-            {OpenCommentRe &&
-                (props.comments && props.comments.map((comment, index) => (
-                    (comment.parentCommentId && props.commentId === comment.parentCommentId &&
-                        <React.Fragment key={index}>
-                            <ChildCommentList writer={comment.writer} content={comment.content} />
-                        </React.Fragment>
-                    )
-                )))
-            }
+            <div className="video-detail-comment-child-list">
+                {OpenChildComment &&
+                    (props.comments && props.comments.map((comment, index) => (
+                        (comment.parentCommentId && props.comment._id === comment.parentCommentId &&
+                            <React.Fragment key={index}>
+                                <ChildComment comment={comment} />
+                            </React.Fragment>
+                        )
+                    )))
+                }
+            </div>
         </div>
     )
 }

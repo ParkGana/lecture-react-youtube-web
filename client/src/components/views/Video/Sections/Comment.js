@@ -7,7 +7,7 @@ import { EditOutlined } from '@ant-design/icons';
 
 import { SERVER_COMMENT } from '../../../Config';
 
-import ParentCommentList from '../Sections/ParentCommentList';
+import ParentComment from '../Sections/ParentComment';
 
 const { TextArea } = Input;
 
@@ -51,22 +51,24 @@ function Comment(props) {
     return (
         <div className="video-detail-comment">
             <h4>Comments</h4>
-            <Form className="video-detail-comment-form" autoComplete="off" onFinish={onWriteComment}>
+            <Form className="video-detail-comment-parent-form" autoComplete="off" onFinish={onWriteComment}>
                 <Form.Item>
                     <TextArea placeholder="Write some comments" value={Comment} onChange={onChangeComment} />
                 </Form.Item>
                 <Form.Item>
-                    <Button className="video-detail-comment-form-btn" type="primary" htmlType="submit"><EditOutlined /></Button>
+                    <Button className="video-detail-comment-parent-form-btn" type="primary" htmlType="submit"><EditOutlined /></Button>
                 </Form.Item>
             </Form>
 
-            {props.comments && props.comments.map((comment, index) => (
-                (!comment.parentCommentId &&
-                    <React.Fragment key={index}>
-                        <ParentCommentList comments={props.comments} videoId={comment.videoId} writer={comment.writer} content={comment.content} commentId={comment._id} />
-                    </React.Fragment>
-                )
-            ))}
+            <div className="video-detail-comment-parent-list">
+                {props.comments && props.comments.map((comment, index) => (
+                    (!comment.parentCommentId &&
+                        <React.Fragment key={index}>
+                            <ParentComment comment={comment} comments={props.comments} />
+                        </React.Fragment>
+                    )
+                ))}
+            </div>
         </div>
     )
 }

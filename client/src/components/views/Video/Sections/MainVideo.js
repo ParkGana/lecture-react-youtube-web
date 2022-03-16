@@ -8,15 +8,19 @@ const { Meta } = Card;
 function MainVideo(props) {
     return (
         <div className="video-detail-main">
-            <video src={`http://localhost:5000/${props.videoPath}`} controls />
-            <div className="video-detail-main-info">
-                <p>{props.title}</p>
-                <p>{props.description}</p>
-                <p>조회수 {props.views}회<span>|</span>{moment(props.createdAt).format('YYYY-MM-DD')}</p>
-            </div>
-            <div className="video-detail-main-uploader">
-                <Meta avatar={<Avatar src={props.uploader.profilePath} />} title={props.uploader.name} description />
-            </div>
+            {props.video && props.video.map((video, index) => (
+                <React.Fragment key={index}>
+                    <video src={`http://localhost:5000/${video.videoPath}`} controls />
+                    <div className="video-detail-main-info">
+                        <p>{video.title}</p>
+                        <p>{video.description}</p>
+                        <p>조회수 {video.views}회<span>|</span>{moment(video.createdAt).format('YYYY-MM-DD')}</p>
+                    </div>
+                    <div className="video-detail-main-uploader">
+                        <Meta avatar={<Avatar src={video.uploader.profilePath} />} title={video.uploader.name} description />
+                    </div>
+                </React.Fragment>
+            ))}
         </div>
     )
 }
