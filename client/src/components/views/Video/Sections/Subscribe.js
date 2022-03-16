@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react';
+<<<<<<< HEAD
 import { useSelector } from 'react-redux';
 import { useNavigate } from "react-router-dom";
+=======
+>>>>>>> 4d8aefa50ff0ac2780a9e9414029e69779e56a10
 import Axios from 'axios';
 import { Card, Avatar } from 'antd';
 
@@ -10,10 +13,13 @@ const { Meta } = Card;
 
 
 function Subscribe(props) {
+<<<<<<< HEAD
     const navigate = useNavigate();
 
     const user = useSelector(state => state.user);
 
+=======
+>>>>>>> 4d8aefa50ff0ac2780a9e9414029e69779e56a10
     const [SubscribeNumber, setSubscribeNumber] = useState(0);
     const [Subscribed, setSubscribed] = useState(false);
     
