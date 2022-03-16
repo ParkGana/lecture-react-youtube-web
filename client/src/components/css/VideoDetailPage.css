@@ -1,0 +1,122 @@
+@import '~antd/dist/antd.css';
+
+
+.video-detail {
+    width: 100%;
+    min-height: calc(100vh - 70px - 5rem);
+    clear: both;
+}
+
+.video-detail-main {
+    width: 100%;
+    padding: 10px;
+}
+
+.video-detail-main video {
+    width: 100%;
+}
+
+.video-detail-main-info {
+    border-bottom: 1px solid lightgray;
+}
+
+.video-detail-main-info p {
+    text-align: left;
+    width: calc(100% - 20px);
+    display: inline-block;
+    margin: 5px 10px;
+}
+
+.video-detail-main-info p:nth-child(1) { font-size: 20px; font-weight: bold; } 
+.video-detail-main-info p:nth-child(2) { font-size: 15px; padding-bottom: 20px; } 
+.video-detail-main-info p:nth-child(3) { font-size: 13px; color: gray; padding-bottom: 20px; } 
+
+.video-detail-main-info p span {
+    padding: 0 15px;
+}
+
+
+.video-detail-main-uploader {
+    border-bottom: 1px solid lightgray;
+    padding: 5px 10px;
+}
+
+.video-detail-main-uploader .ant-card-meta {
+    padding: 20px 0;
+    line-height: 40px;
+}
+
+.video-detail-main-uploader .ant-avatar {
+    width: 50px;
+    height: 50px;
+}
+
+
+
+
+
+
+
+
+
+
+
+.video-detail-side {
+    width: 100%;
+    padding: 10px;
+}
+
+.video-detail-side-video {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+.video-detail-side-video a {
+    width: 200px;
+    float: left;
+}
+
+.video-detail-side-video a img {
+    width: 100%;
+}
+
+.video-detail-side-video-duration {
+    bottom: 0;
+    left: 150px;
+    position: absolute;
+    margin: 4px;
+    color: white;
+    background-color: rgba(17, 17, 17, 0.8);
+    opacity: 0.8;
+    padding: 2px 4px;
+    border-radius: 2px;
+    letter-spacing: 0.5px;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 12px; 
+}
+
+.video-detail-side-video-info {
+    width: calc(100% - 200px);
+    float: right;
+}
+
+.video-detail-side-video-info p {
+    text-align: left;
+    width: calc(100% - 20px);
+    display: inline-block;
+    margin: 5px 10px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.video-detail-side-video-info p:nth-child(1) { font-size: 15px; } 
+.video-detail-side-video-info p:nth-child(2) { font-size: 13px; } 
+.video-detail-side-video-info p:nth-child(3) { font-size: 13px; color: gray; } 
+
+.video-detail-side-video-info p span {
+    padding: 0 15px;
+}
