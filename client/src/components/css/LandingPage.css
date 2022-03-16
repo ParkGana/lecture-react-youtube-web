@@ -1,0 +1,61 @@
+@import '~antd/dist/antd.css';
+
+
+.video-list {
+    width: 100%;
+    min-height: calc(100vh - 70px - 5rem);
+    margin: 0 auto;
+    text-align: center;
+}
+
+.video-list-video {
+    position: relative;
+    display: inline-block;
+    margin: 15px;
+    border-bottom: 2px solid lightgray;
+    width: 300px;
+}
+
+.video-list-video a {
+    display: inline-block;
+}
+
+.video-list-video a img {
+    width: 100%;
+}
+
+.video-list-video-duration {
+    bottom: 105px;
+    right: 3px;
+    position: absolute;
+    margin: 4px;
+    color: white;
+    background-color: rgba(17, 17, 17, 0.8);
+    opacity: 0.8;
+    padding: 2px 4px;
+    border-radius: 2px;
+    letter-spacing: 0.5px;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 12px; 
+}
+
+.video-list-video-info .ant-card-meta {
+    padding: 15px 15px 0 15px;
+    text-align: left;
+}
+
+.video-list-video-info p {
+    text-align: left;
+    width: calc(100% - 20px);
+    display: inline-block;
+    margin: 5px 10px;
+    padding: 0 50px;
+}
+
+.video-list-video-info p:nth-child(2) { font-size: 13px; } 
+.video-list-video-info p:nth-child(3) { font-size: 13px; } 
+
+.video-list-video-info p span {
+    padding: 0 15px;
+}

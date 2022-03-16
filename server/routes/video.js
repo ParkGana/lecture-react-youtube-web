@@ -74,4 +74,16 @@ router.post('/uploadVideo', (req, res) => {
     });
 });
 
+/****************************************************************************************************
+ * 영상 목록 가져오기
+ ****************************************************************************************************/
+router.get('/getVideos', (req, res) => {
+    Video.find()
+    .populate('uploader')
+    .exec((err, videos) => {
+        if(err) return res.status(400).json({ getVideosSuccess: false });
+        return res.status(200).json({ getVideosSuccess: true, videos: videos });
+    });
+});
+
 module.exports = router;
