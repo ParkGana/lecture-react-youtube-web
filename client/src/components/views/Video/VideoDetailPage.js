@@ -68,7 +68,7 @@ function VideoDetailPage() {
                 <div className="video-detail">
                     <Row gutter={[16, 16]}>
                         <Col lg={16} xs={24}>
-                            <MainVideo video={Video} />
+                            <MainVideo videoId={MainVideoId} video={Video} userId={localStorage.getItem('userId')} />
                             <Comment videoId={MainVideoId} comments={Comments} onRefreshComment={onRefreshComment} />
                         </Col>
                         <Col lg={8} xs={24}>

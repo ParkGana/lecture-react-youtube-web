@@ -1,6 +1,7 @@
 import React from 'react';
 import { Card, Avatar } from 'antd';
-import { LikeOutlined, DislikeOutlined } from '@ant-design/icons';
+
+import LikeDislike from './LikeDislike';
 
 const { Meta } = Card;
 
@@ -12,8 +13,7 @@ function ChildCommentList(props) {
             <p>{props.comment.content}</p>
             <p>
                 <span></span>
-                <span><LikeOutlined /></span>
-                <span><DislikeOutlined /></span>
+                <LikeDislike commentId={props.comment._id} userId={localStorage.getItem('userId')} />
             </p>
         </div>
     )

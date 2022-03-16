@@ -3,10 +3,11 @@ import { useSelector } from 'react-redux';
 import { useNavigate } from "react-router-dom";
 import Axios from 'axios';
 import { Card, Avatar, Form, Input, Button } from 'antd';
-import { LikeOutlined, DislikeOutlined, EditOutlined, CaretDownOutlined, CaretUpOutlined } from '@ant-design/icons';
+import { EditOutlined, CaretDownOutlined, CaretUpOutlined } from '@ant-design/icons';
 
 import { SERVER_COMMENT } from '../../../Config';
 
+import LikeDislike from './LikeDislike';
 import ChildComment from './ChildComment';
 
 const { Meta } = Card;
@@ -82,8 +83,7 @@ function ParentCommentList(props) {
             <p>{props.comment.content}</p>
             <p>
                 <span></span>
-                <span><LikeOutlined /></span>
-                <span><DislikeOutlined /></span>
+                <LikeDislike commentId={props.comment._id} userId={localStorage.getItem('userId')} />
                 <span onClick={onToggleChildCommentWrite}>답글 작성</span>
             </p>
             {OpenChildCommentWrite &&

@@ -8,6 +8,20 @@
 }
 
 
+/* LikeDislike.js */
+.video-detail-like {
+    display: inline-block;
+}
+
+.video-detail-like span {
+    cursor: pointer;
+}
+
+.video-detail-like span:nth-child(even) {
+    margin-left: 15px;
+}
+
+
 /* MainVideo.js */
 .video-detail-main {
     width: 100%;
@@ -31,10 +45,15 @@
 
 .video-detail-main-info p:nth-child(1) { font-size: 20px; font-weight: bold; } 
 .video-detail-main-info p:nth-child(2) { font-size: 15px; padding-bottom: 20px; } 
-.video-detail-main-info p:nth-child(3) { font-size: 13px; color: gray; padding-bottom: 20px; } 
+.video-detail-main-info p:nth-child(3) { font-size: 13px; padding-bottom: 20px; color: gray; display: inline-block; width: calc(100% - 200px); } 
 
-.video-detail-main-info p span {
+.video-detail-main-info p span { 
     padding: 0 15px;
+}
+
+.video-detail-main-info span {
+    font-size: 20px;
+    margin-left: 20px;
 }
 
 .video-detail-main-uploader {
