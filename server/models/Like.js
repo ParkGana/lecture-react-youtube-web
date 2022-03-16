@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 
 const likeSchema = mongoose.Schema({
-   user: {
+   userId: {
        type: Schema.Types.ObjectId,
        ref: 'User'
    },
