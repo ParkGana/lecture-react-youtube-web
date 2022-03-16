@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from "react-router-dom";
 import Axios from 'axios';
@@ -67,7 +67,7 @@ function Comment(props) {
             {props.comments && props.comments.map((comment, index) => (
                 (!comment.parentCommentId &&
                     <React.Fragment key="index">
-                        <ParentCommentList writer={comment.writer} content={comment.content} commentId={comment._id} />
+                        <ParentCommentList comments={props.comments} videoId={comment.videoId} writer={comment.writer} content={comment.content} commentId={comment._id} />
                     </React.Fragment>
                 )
             ))}
