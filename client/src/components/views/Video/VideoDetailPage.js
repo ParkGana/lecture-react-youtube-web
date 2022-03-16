@@ -8,6 +8,7 @@ import { SERVER_VIDEO } from '../../Config';
 
 import MainVideo from './Sections/MainVideo';
 import SideVideoList from './Sections/SideVideoList';
+import Comment from './Sections/Comment';
 
 import '../../css/VideoDetailPage.css';
 
@@ -59,6 +60,7 @@ function VideoDetailPage() {
                                     <MainVideo uploader={video.uploader} title={video.title} description={video.description} views={video.views} videoPath={video.videoPath} createdAt={video.createdAt} />
                                 </React.Fragment>
                             ))}
+                            <Comment />
                         </Col>
                         <Col lg={8} xs={24}>
                             <div className="video-detail-side">
