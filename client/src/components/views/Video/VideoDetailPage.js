@@ -60,7 +60,7 @@ function VideoDetailPage() {
                                     <MainVideo uploader={video.uploader} title={video.title} description={video.description} views={video.views} videoPath={video.videoPath} createdAt={video.createdAt} />
                                 </React.Fragment>
                             ))}
-                            <Comment />
+                            {MainVideoId !== '' && <Comment videoId={MainVideoId} />}
                         </Col>
                         <Col lg={8} xs={24}>
                             <div className="video-detail-side">
