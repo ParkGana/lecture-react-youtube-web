@@ -43,13 +43,13 @@ function SignupPage() {
         if(Password !== ConfirmPassword) return alert('입력하신 비밀번호가 일치하지 않습니다.');
         if(Password.length < 8) return alert('비밀번호는 8자 이상이어야 합니다.');
 
-        const body = {
+        const variables = {
             email: Email,
             name: Name,
             password: Password
         }
 
-        Axios.post(`${SERVER_USER}/signup`, body)
+        Axios.post(`${SERVER_USER}/signup`, variables)
         .then(response => {
             if(response.data.signupSuccess) {
                 navigate('/signin');

@@ -31,9 +31,9 @@ app.use('/uploads', express.static('uploads'));
 /****************************************************************************************************
  * 라우터 설정
  ****************************************************************************************************/
-app.use('/api/user/', require('./routes/user'));
-app.use('/api/video/', require('./routes/video'));
-app.use('/api/comment/', require('./routes/comment'));
+app.use('/api/user', require('./routes/user'));
+app.use('/api/video', require('./routes/video'));
+app.use('/api/comment', require('./routes/comment'));
 
 
 app.get('/', (req, res) => {

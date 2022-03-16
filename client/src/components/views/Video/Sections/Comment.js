@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from "react-router-dom";
 import Axios from 'axios';
-import { Form, Input, Button, Card, Avatar } from 'antd';
+import { Form, Input, Button} from 'antd';
 import { EditOutlined } from '@ant-design/icons';
 
 import { SERVER_COMMENT } from '../../../Config';
@@ -10,7 +10,6 @@ import { SERVER_COMMENT } from '../../../Config';
 import ParentCommentList from '../Sections/ParentCommentList';
 
 const { TextArea } = Input;
-const { Meta } = Card;
 
 
 function Comment(props) {
@@ -25,7 +24,6 @@ function Comment(props) {
     }
 
     const onWriteComment = (e) => {
-
         if(user.userData.isAuth) {
             // e.preventDefault();
 
@@ -37,10 +35,8 @@ function Comment(props) {
     
             Axios.post(`${SERVER_COMMENT}/writeComment`, variables)
             .then(response => {
-                console.log(response.data);
                 if (response.data.writeCommentSuccess) {
                     setComment('');
-                    // props.refreshFunction(response.data.result)
                 }
                 else {
                     alert('댓글 작성에 실패하였습니다.');
@@ -66,7 +62,7 @@ function Comment(props) {
 
             {props.comments && props.comments.map((comment, index) => (
                 (!comment.parentCommentId &&
-                    <React.Fragment key="index">
+                    <React.Fragment key={index}>
                         <ParentCommentList comments={props.comments} videoId={comment.videoId} writer={comment.writer} content={comment.content} commentId={comment._id} />
                     </React.Fragment>
                 )

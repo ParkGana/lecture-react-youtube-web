@@ -29,12 +29,12 @@ function SigninPage() {
         if(Email === '') return alert('이메일을 입력해주세요.');
         if(Password === '') return alert('비밀번호를 입력해주세요.');
 
-        const body = {
+        const variables = {
             email: Email,
             password: Password
         }
 
-        Axios.post(`${SERVER_USER}/signin`, body)
+        Axios.post(`${SERVER_USER}/signin`, variables)
         .then(response => {
             if(response.data.signinSuccess) {
                 window.localStorage.setItem('userId', response.data.userId);
@@ -67,7 +67,6 @@ function SigninPage() {
                         </Form.Item>
                     </Form>
                 </div>
-                
             </div>
         </>
     )

@@ -111,7 +111,6 @@ function VideoUploadPage() {
 
         Axios.post(`${SERVER_VIDEO}/uploadVideo`, variables)
         .then(response => {
-            console.log(response.data);
             if(response.data.uploadVideoSuccess) {
                 message.success('영상이 성공적으로 업로드 되었습니다!');
 

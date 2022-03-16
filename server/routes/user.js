@@ -11,7 +11,7 @@ const { User } = require("../models/User");
 router.post('/signup', (req, res) => {
     const user = new User(req.body);
 
-    user.save((err, user) => {
+    user.save((err) => {
         if(err) return res.status(400).json({ signupSuccess: false });
         return res.status(200).json({ signupSuccess: true });
     })
@@ -66,7 +66,6 @@ router.get('/signout', auth, (req, res) => {
  * 권한 확인
  ****************************************************************************************************/
 router.get('/auth', auth, (req, res) => {
-    console.log('안녕');
     res.status(200).json({
         _id: req.user._id,
         email: req.user.email,

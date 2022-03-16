@@ -30,7 +30,6 @@ function VideoDetailPage() {
 
         Axios.post(`${SERVER_VIDEO}/getVideo`, variables)
         .then(response => {
-            console.log(response.data);
             if(response.data.getVideoSuccess) {
                 setVideo(response.data.video);
 
@@ -51,7 +50,6 @@ function VideoDetailPage() {
 
         Axios.post(`${SERVER_COMMENT}/getComments`, variables)
         .then(response => {
-            console.log(response.data);
             if (response.data.getCommentsSuccess) {
                 setComments(response.data.comments);
             } else {
@@ -66,7 +64,7 @@ function VideoDetailPage() {
                 <div className="video-detail">
                     <Row gutter={[16, 16]}>
                         <Col lg={16} xs={24}>
-                            { Video && Video.map((video, index) => (
+                            {Video && Video.map((video, index) => (
                                 <React.Fragment key={index}>
                                     <MainVideo uploader={video.uploader} title={video.title} description={video.description} views={video.views} videoPath={video.videoPath} createdAt={video.createdAt} />
                                 </React.Fragment>
@@ -75,7 +73,7 @@ function VideoDetailPage() {
                         </Col>
                         <Col lg={8} xs={24}>
                             <div className="video-detail-side">
-                                { MainVideoId !== '' && Videos && Videos.map((video, index) => (
+                                {MainVideoId !== '' && Videos && Videos.map((video, index) => (
                                     <React.Fragment key={index}>
                                        <SideVideoList mainVideo={MainVideoId} videoId={video._id} uploader={video.uploader} title={video.title} duration={video.duration} views={video.views} thumbnailPath={video.thumbnailPath} createdAt={video.createdAt} />
                                     </React.Fragment>
@@ -85,7 +83,6 @@ function VideoDetailPage() {
                     </Row>
                 </div>
             </div>
-            
         </>
     )
 }

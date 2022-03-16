@@ -28,7 +28,7 @@ function LandingPage() {
         <>
             <div className="content">
                 <div className="video-list">
-                    { Videos && Videos.map((video, index) => (
+                    {Videos && Videos.map((video, index) => (
                         <React.Fragment key={index}>
                             <VideoList videoId={video._id} uploader={video.uploader} title={video.title} duration={video.duration} views={video.views} thumbnailPath={video.thumbnailPath} createdAt={video.createdAt} />
                         </React.Fragment>

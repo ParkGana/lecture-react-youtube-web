@@ -48,10 +48,8 @@ function ParentCommentList(props) {
     
             Axios.post(`${SERVER_COMMENT}/writeComment`, variables)
             .then(response => {
-                console.log(response.data);
                 if (response.data.writeCommentSuccess) {
                     setCommentRe('');
-                    // props.refreshFunction(response.data.result)
                 }
                 else {
                     alert('댓글 작성에 실패하였습니다.');
@@ -65,12 +63,14 @@ function ParentCommentList(props) {
 
     useEffect(() => {
         let number = 0;
+
         props.comments.map((comment) => {
             if (props.commentId === comment.parentCommentId) {
                 number++;
             }
-            setCommentReNumber(number);
         });
+        
+        setCommentReNumber(number);
     }, []);
 
     return (
@@ -105,7 +105,6 @@ function ParentCommentList(props) {
                     )
                 )))
             }
-            
         </div>
     )
 }

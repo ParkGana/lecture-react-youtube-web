@@ -1,9 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from "react-router-dom";
-import Axios from 'axios';
 
-import { SERVER_USER } from '../components/Config';
 import { auth } from '../_actions/user';
 
 
@@ -22,7 +20,6 @@ export default function (SpecificComponent, option, adminRoute = null) {
         useEffect(() => {
             dispatch(auth())
             .then(response => {
-                console.log(response.data);
                 // 로그인 되어있을 경우
                 if(response.payload.isAuth) {
                     // 관리자 페이지일 경우
