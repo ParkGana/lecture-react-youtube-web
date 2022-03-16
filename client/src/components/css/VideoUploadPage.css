@@ -37,12 +37,12 @@
     margin: 20px;
 }
 
-.video-upload-input-title, .video-upload-input-description {
+.video-upload-form .ant-form-item .ant-input {
     width: calc(100% - 40px);
     margin: 0 20px;
 }
 
-.video-upload-select-privacy, .video-upload-select-category {
+.video-upload-form .ant-select {
     width: calc(50% - 40px);
     margin: 0 20px;
     text-align: left;

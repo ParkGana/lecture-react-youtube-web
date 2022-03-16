@@ -147,17 +147,17 @@ function VideoUploadPage() {
                             }
                         </div>
                         <Form.Item>
-                            <Input className="video-upload-input-title" placeholder="Title" value={Title} onChange={onChangeTitle} />
+                            <Input placeholder="Title" value={Title} onChange={onChangeTitle} />
                         </Form.Item>
                         <Form.Item>
-                            <TextArea rows={10} className="video-upload-input-description" placeholder="Description" value={Description} onChange={onChangeDescription} />
+                            <TextArea rows={10} placeholder="Description" value={Description} onChange={onChangeDescription} />
                         </Form.Item>
-                        <Select className="video-upload-select-privacy" placeholder="Privacy" onChange={onChangePrivacy}>
+                        <Select placeholder="Privacy" onChange={onChangePrivacy}>
                             {PrivacyOptions.map((item, index) => (
                                 <Option key={index} value={item.value}>{item.label}</Option>
                             ))}
                         </Select>
-                        <Select className="video-upload-select-category" placeholder="Category" onChange={onChangeCategory}>
+                        <Select placeholder="Category" onChange={onChangeCategory}>
                             {CategoryOptions.map((item, index) => (
                                 <Option key={index} value={item.value}>{item.label}</Option>
                             ))}
