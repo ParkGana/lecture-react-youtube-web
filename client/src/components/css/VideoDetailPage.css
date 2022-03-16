@@ -22,6 +22,23 @@
 }
 
 
+/* Subscribe.js */
+.video-detail-subscribe {
+    float: right;
+    padding: 40px 10px;
+}
+
+.video-detail-subscribe div {
+    width: 80px;
+    height: 40px;
+    border-radius: 5px;
+    text-align: center;
+    line-height: 40px;
+    cursor: pointer;
+    color: white;
+}
+
+
 /* MainVideo.js */
 .video-detail-main {
     width: 100%;
@@ -59,16 +76,28 @@
 .video-detail-main-uploader {
     border-bottom: 1px solid lightgray;
     padding: 5px 10px;
+    clear: both;
+    display: inline-block;
+    width: 100%;
 }
 
-.video-detail-main-uploader .ant-card-meta {
-    padding: 20px 0;
+.video-detail-main-uploader-info {
+    float:left;
+    width: calc(100% - 130px);
+}
+
+.video-detail-main-uploader-info .ant-card-meta {
+    padding-top: 20px;
     line-height: 40px;
 }
 
-.video-detail-main-uploader .ant-avatar {
+.video-detail-main-uploader-info .ant-avatar {
     width: 50px;
     height: 50px;
+}
+
+.video-detail-main-uploader-info p {
+    color: gray;
 }
 
 
