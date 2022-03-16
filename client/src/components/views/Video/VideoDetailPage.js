@@ -21,6 +21,10 @@ function VideoDetailPage() {
     const [MainVideoId, setMainVideoId] = useState('');
     const [Comments, setComments] = useState([]);
 
+    const onRefreshComment = (comment) => {
+        setComments(Comments.concat(comment));
+    }
+
     useEffect(() => {
         setMainVideoId(videoId);
 
@@ -65,7 +69,7 @@ function VideoDetailPage() {
                     <Row gutter={[16, 16]}>
                         <Col lg={16} xs={24}>
                             <MainVideo video={Video} />
-                            <Comment videoId={MainVideoId} comments={Comments} />
+                            <Comment videoId={MainVideoId} comments={Comments} onRefreshComment={onRefreshComment} />
                         </Col>
                         <Col lg={8} xs={24}>
                             <SideVideoList mainVideoId={MainVideoId} videos={Videos} />

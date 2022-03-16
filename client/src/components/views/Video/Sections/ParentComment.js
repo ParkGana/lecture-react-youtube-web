@@ -50,6 +50,9 @@ function ParentCommentList(props) {
             .then(response => {
                 if (response.data.writeCommentSuccess) {
                     setCommentRe('');
+                    setOpenChildCommentWrite(false);
+                    setOpenChildComment(false);
+                    props.onRefreshComment(response.data.comment);
                 }
                 else {
                     alert('댓글 작성에 실패하였습니다.');
@@ -71,7 +74,7 @@ function ParentCommentList(props) {
         });
         
         setCommentReNumber(number);
-    }, []);
+    }, [props.comments, props.comment._id]);
 
     return (
         <div className="video-detail-comment-parent">

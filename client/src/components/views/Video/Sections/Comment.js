@@ -37,6 +37,7 @@ function Comment(props) {
             .then(response => {
                 if (response.data.writeCommentSuccess) {
                     setComment('');
+                    props.onRefreshComment(response.data.comment);
                 }
                 else {
                     alert('댓글 작성에 실패하였습니다.');
@@ -64,7 +65,7 @@ function Comment(props) {
                 {props.comments && props.comments.map((comment, index) => (
                     (!comment.parentCommentId &&
                         <React.Fragment key={index}>
-                            <ParentComment comment={comment} comments={props.comments} />
+                            <ParentComment comment={comment} comments={props.comments} onRefreshComment={props.onRefreshComment} />
                         </React.Fragment>
                     )
                 ))}
