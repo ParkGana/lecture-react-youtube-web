@@ -16,7 +16,7 @@ const likeSchema = mongoose.Schema({
        ref: 'Comment'
    },
    isLike: {
-       type: Number  // 0 : false, 1 : true
+       type: Boolean
    }
 
 }, { timestamps: true })
