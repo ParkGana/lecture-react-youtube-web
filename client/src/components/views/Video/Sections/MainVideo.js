@@ -1,10 +1,8 @@
 import React from 'react';
-import { Card, Avatar } from 'antd';
 import moment from 'moment';
 
 import LikeDislike from './LikeDislike';
-
-const { Meta } = Card;
+import Subscribe from './Subscribe';
 
 
 function MainVideo(props) {
@@ -20,9 +18,7 @@ function MainVideo(props) {
                         <span></span>
                         <LikeDislike video videoId={props.videoId} userId={localStorage.getItem('userId')} />
                     </div>
-                    <div className="video-detail-main-uploader">
-                        <Meta avatar={<Avatar src={video.uploader.profilePath} />} title={video.uploader.name} description />
-                    </div>
+                        <Subscribe video={video} userTo={video.uploader._id} userFrom={localStorage.getItem('userId')} />
                 </React.Fragment>
             ))}
         </div>
