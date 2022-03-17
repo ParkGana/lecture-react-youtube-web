@@ -11,12 +11,12 @@ function UserTo(props) {
     const [SpecificUser, setSpecificUser] = useState('');
 
     const onSpecific = (userTo) => {
-        const variables = {
-            uploader: userTo
-        }
+        let variables = { };
 
         // 아무 계정도 선택되어있지 않거나 현재 선택되어있지 않은 계정을 선택한 경우
         if(SpecificUser === '' || SpecificUser !== userTo.name) {
+            variables = { uploader: userTo }
+
             Axios.post(`${SERVER_SUBSCRIBE}/getSpecificVideos`, variables)
             .then(response => {
                 if(response.data.getSpecificVideosSuccess) {
@@ -30,7 +30,9 @@ function UserTo(props) {
         }
         // 현재 선택되어있는 계정을 다시 선택한 경우
         else {
-            Axios.get(`${SERVER_SUBSCRIBE}/getAllVideos`)
+            variables = { userFrom: localStorage.getItem('userId') }
+
+            Axios.post(`${SERVER_SUBSCRIBE}/getAllVideos`, variables)
             .then(response => {
                 if(response.data.getAllVideosSuccess) {
                     props.onRefreshVideos(response.data.videos);

@@ -79,6 +79,7 @@ router.post('/uploadVideo', (req, res) => {
  ****************************************************************************************************/
 router.get('/getVideos', (req, res) => {
     Video.find()
+    .sort({ "createdAt": -1 })
     .populate('uploader')
     .exec((err, videos) => {
         if(err) return res.status(400).json({ getVideosSuccess: false });

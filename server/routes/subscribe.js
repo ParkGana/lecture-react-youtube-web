@@ -43,7 +43,7 @@ router.post('/removeSubscribe', (req, res) => {
 /****************************************************************************************************
  * 전체 영상 목록 가져오기
  ****************************************************************************************************/
-router.get('/getAllVideos', (req, res) => {
+router.post('/getAllVideos', (req, res) => {
     Subscribe.find(req.body)
     .populate('userTo')
     .exec((err, subscribes)=> {
@@ -57,6 +57,7 @@ router.get('/getAllVideos', (req, res) => {
 
 
         Video.find({ uploader: { $in: userTo }})
+        .sort({ "createdAt": -1 })
         .populate('uploader')
         .exec((err, videos) => {
             if(err) return res.status(400).json({ getAllVideosSuccess: false });
@@ -69,8 +70,8 @@ router.get('/getAllVideos', (req, res) => {
  * 특정 영상 목록 가져오기
  ****************************************************************************************************/
  router.post('/getSpecificVideos', (req, res) => {
-     console.log(req.body);
     Video.find(req.body)
+    .sort({ "createdAt": -1 })
     .populate('uploader')
     .exec((err, videos) => {
         if(err) return res.status(400).json({ getSpecificVideosSuccess: false });

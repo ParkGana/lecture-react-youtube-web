@@ -15,9 +15,12 @@ function SubscribePage() {
     const [Videos, setVideos] = useState([]);
 
     useEffect(() => {
-        Axios.get(`${SERVER_SUBSCRIBE}/getAllVideos`)
+        const variables = {
+            userFrom: localStorage.getItem('userId')
+        }
+
+        Axios.post(`${SERVER_SUBSCRIBE}/getAllVideos`, variables)
         .then(response => {
-            console.log(response.data);
             if(response.data.getAllVideosSuccess) {
                 setSubscribes(response.data.userTo);
                 setVideos(response.data.videos);
