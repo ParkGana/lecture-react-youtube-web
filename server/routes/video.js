@@ -99,4 +99,17 @@ router.post('/getVideo', (req, res) => {
     });
 });
 
+/****************************************************************************************************
+ * 검색 조건에 해당하는 영상 목록 가져오기
+ ****************************************************************************************************/
+router.post('/getSearchVideos', (req, res) => {
+    Video.find({ $or: [{ 'title': {$regex: req.body.searchText, '$options': 'i'} }, { 'description': {$regex: req.body.searchText, '$options': 'i'} }]})
+    .sort({ "createdAt": -1 })
+    .populate('uploader')
+    .exec((err, videos) => {
+        if(err) return res.status(400).json({ getSearchVideosSuccess: false });
+        return res.status(200).json({ getSearchVideosSuccess: true, videos: videos });
+    });
+});
+
 module.exports = router;

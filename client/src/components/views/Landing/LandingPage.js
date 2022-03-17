@@ -25,10 +25,14 @@ function LandingPage() {
         });
     }, []);
 
+    const onRefreshVideos = (videos) => {
+        setVideos(videos);
+    }
+
     return (
         <>
             <div className="content">
-                <SearchBar />
+                <SearchBar onRefreshVideos={onRefreshVideos}/>
                 <VideoList videos={Videos} />
             </div>
         </>
