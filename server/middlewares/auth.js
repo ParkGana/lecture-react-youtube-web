@@ -10,7 +10,7 @@ let auth = (req, res, next) => {
 
     User.findByToken(token, (err, userInfo) => {
         if(err) next(err);
-        if(!userInfo) return res.json({ isAuth: false });
+        if(!userInfo) return res.json({ _id: '', isAuth: false });
         
         req.token = token;
         req.user = userInfo;

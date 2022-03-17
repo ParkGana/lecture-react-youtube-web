@@ -16,7 +16,7 @@ function Subscribe(props) {
 
     const [SubscribeNumber, setSubscribeNumber] = useState(0);
     const [Subscribed, setSubscribed] = useState(false);
-    
+    const [Selfed, setSelfed] = useState(false);
 
     useEffect(() => {
         const variables = {
@@ -33,12 +33,16 @@ function Subscribe(props) {
                         setSubscribed(true);
                     }
                 });
+
+                if(user.userData._id === props.userTo) {
+                    setSelfed(true);
+                }
             }
             else {
                 alert('구독자 현황을 가져오는데 실패하였습니다.');
             }
         });
-    }, []);
+    }, [user]);
 
     const onSubscribe = (e) => {
         const variables = {
@@ -84,9 +88,12 @@ function Subscribe(props) {
                 <Meta avatar={<Avatar src={props.video.uploader.profilePath} />} title={props.video.uploader.name} />
                 <p>구독자 {SubscribeNumber}명</p>
             </div>
-            <div className="video-detail-subscribe">
-                <div onClick={onSubscribe} style={{ backgroundColor: `${Subscribed ? 'gray' : '#B21016'}` }}>{Subscribed ? '구독 중' : '구독' }</div>
-            </div>
+            {!Selfed &&
+                <div className="video-detail-subscribe">
+                    <div onClick={onSubscribe} style={{ backgroundColor: `${Subscribed ? 'gray' : '#B21016'}` }}>{Subscribed ? '구독 중' : '구독' }</div>
+                </div>
+            }
+            
         </div>
         
     )
