@@ -4,6 +4,7 @@ import Axios from 'axios';
 import Auth from '../../../hoc/auth';
 import { SERVER_VIDEO } from '../../Config';
 
+import SearchBar from './Sections/SearchBar';
 import VideoList from './Sections/VideoList';
 
 import '../../css/LandingPage.css';
@@ -27,6 +28,7 @@ function LandingPage() {
     return (
         <>
             <div className="content">
+                <SearchBar />
                 <VideoList videos={Videos} />
             </div>
         </>
