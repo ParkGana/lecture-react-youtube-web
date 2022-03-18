@@ -151,11 +151,6 @@ function VideoUploadPage() {
                         <Form.Item>
                             <TextArea rows={10} placeholder="Description" value={Description} onChange={onChangeDescription} />
                         </Form.Item>
-                        <Select placeholder="Privacy" onChange={onChangePrivacy}>
-                            {PrivacyOptions.map((item, index) => (
-                                <Option key={index} value={item.value}>{item.label}</Option>
-                            ))}
-                        </Select>
                         <Select placeholder="Category" onChange={onChangeCategory}>
                             {CategoryOptions.map((item, index) => (
                                 <Option key={index} value={item.value}>{item.label}</Option>

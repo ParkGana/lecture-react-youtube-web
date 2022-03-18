@@ -43,7 +43,7 @@
 }
 
 .video-upload-form .ant-select {
-    width: calc(50% - 40px);
+    width: calc(100% - 40px);
     margin: 0 20px;
     text-align: left;
 }
