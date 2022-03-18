@@ -131,7 +131,7 @@ function VideoUploadPage() {
                     <h2>Upload Video</h2>
                     <Form className="video-upload-form" autoComplete="off" onFinish={onUploadVideo}>
                         <div className="video-upload-dropzone">
-                            <Dropzone onDrop={onDropVideo} multiple={false} maxSize={1000000000}>
+                            <Dropzone onDrop={onDropVideo} multiple={false} maxSize={1000000000} accept="video/*">
                                 {({ getRootProps, getInputProps }) => (
                                     <div {...getRootProps()}>
                                         <Input {...getInputProps()} />

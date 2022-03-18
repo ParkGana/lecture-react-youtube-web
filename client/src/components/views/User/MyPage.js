@@ -105,7 +105,7 @@ function MyPage() {
                         <h2>Profile</h2>
                         {User &&
                             <div className="my-profile-dropzone">
-                                <Dropzone onDrop={onDropImage} multiple={false} maxSize={1000000000}>
+                                <Dropzone onDrop={onDropImage} multiple={false} maxSize={1000000000} accept="image/*">
                                     {({ getRootProps, getInputProps }) => (
                                         <div className="my-profile-dropzone-image" {...getRootProps()}>
                                             <Input {...getInputProps()} />
