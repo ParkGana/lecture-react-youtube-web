@@ -1,8 +1,26 @@
 const express = require('express');
 const router = express.Router();
+const multer = require('multer');
 
 const { auth } = require("../middlewares/auth");
 const { User } = require("../models/User");
+
+let storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, 'uploads/profiles/');
+    },
+    filename: (req, file, cb) => {
+        cb(null, `${Date.now()}_${file.originalname}`);
+    },
+    fileFilter: (req, file, cb) => {
+        const ext = path.extname(file.originalname);
+
+        if(ext !== '.jpg' || ext !== '.png') return cb(res.status(400).end('only jpg and png are allowed'), false);
+        cb(null, true);
+    }
+});
+
+const upload = multer({ storage: storage }).single('file');
 
 
 /****************************************************************************************************
@@ -85,6 +103,26 @@ router.post('/getUser', (req, res) => {
         if(err) return res.status(400).json({ getUserSuccess: false });
         return res.status(200).json({ getUserSuccess: true, user: user });
    });
+});
+
+/****************************************************************************************************
+ * 파일 업로드
+ ****************************************************************************************************/
+router.post('/dropImage', (req, res) => {
+    upload(req, res, err => {
+        if(err) return res.status(400).json({ dropImageSuccess: false });
+        return res.status(200).json({ dropImageSuccess: true, profilePath: res.req.file.path });
+    });
+});
+
+/****************************************************************************************************
+ * 프로필 이미지 변경
+ ****************************************************************************************************/
+ router.post('/changeProfile', (req, res) => {
+    User.findOneAndUpdate({ '_id': req.body.userTo }, { 'profilePath': req.body.profilePath }, (err) => {
+        if(err) return res.status(400).json({ changeProfileSuccess: false });
+        return res.status(200).json({ changeProfileSuccess: true });
+    });
 });
 
 module.exports = router;

@@ -17,9 +17,12 @@ function MyPage() {
     const [Videos, setVideos] = useState([]);
     const [ViewNumber, setViewNumber] = useState(0);
     const [SubscribeNumber, setSubscribeNumber] = useState(0);
+    const [ProfilePath, setProfilePath] = useState('');
+
+    let variables = { };
 
     useEffect(() => {
-        const variables = {
+        variables = {
             userTo: localStorage.getItem('userId')
         }
 
@@ -45,7 +48,6 @@ function MyPage() {
 
         Axios.post(`${SERVER_VIDEO}/getMyVideos`, variables)
         .then(response => {
-            console.log(response.data);
             if(response.data.getMyVideosSuccess) {
                 setVideos(response.data.videos);
 
@@ -63,6 +65,38 @@ function MyPage() {
         });
     }, []);
 
+    const onDropImage = (files) => {
+        let formData = new FormData;
+        const config = { header: { 'content-type': 'multipart/form-data' } }
+
+        formData.append('file', files[0]);
+
+        Axios.post(`${SERVER_USER}/dropImage`, formData, config)
+        .then(response => {
+            if(response.data.dropImageSuccess) {
+                setProfilePath(response.data.profilePath);
+
+                variables = {
+                    userTo: localStorage.getItem('userId'),
+                    profilePath: response.data.profilePath
+                }
+
+                Axios.post(`${SERVER_USER}/changeProfile`, variables)
+                .then(response => {
+                    if(response.data.changeProfileSuccess) {
+                        window.location.reload();
+                    }
+                    else {
+                        alert('프로필 이미지 변경에 실패하였습니다.');
+                    }
+                });
+            }
+            else {
+                alert('파일 첨부에 실패하였습니다.');
+            }
+        });
+    }
+
     return (
         <>
             <div className="content">
@@ -71,7 +105,7 @@ function MyPage() {
                         <h2>Profile</h2>
                         {User &&
                             <div className="my-profile-dropzone">
-                                <Dropzone onDrop multiple={false} maxSize={1000000000}>
+                                <Dropzone onDrop={onDropImage} multiple={false} maxSize={1000000000}>
                                     {({ getRootProps, getInputProps }) => (
                                         <div className="my-profile-dropzone-image" {...getRootProps()}>
                                             <Input {...getInputProps()} />
@@ -83,14 +117,13 @@ function MyPage() {
                                     )}
                                 </Dropzone>
                                 <div className="my-profile-dropzone-info">
-                                        <p>{User.name}<EditOutlined style={{ paddingLeft:'10px', color: 'gray', cursor: 'pointer' }} /></p>
+                                        <p>{User.name}</p>
                                         <p>{User.email}</p>
                                         <p>구독자 {SubscribeNumber}명</p>
                                         <p>영상 총 조회수 {ViewNumber}회</p>
                                 </div>
                             </div>
                         }
-                        
                     </div>
                     <div className="my-videos">
                         <h2>My Videos</h2>      
