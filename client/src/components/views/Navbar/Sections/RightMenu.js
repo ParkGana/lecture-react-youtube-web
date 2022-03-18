@@ -2,9 +2,11 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from "react-router-dom";
 import Axios from 'axios';
-import { Menu } from 'antd';
+import { Menu, Card, Avatar } from 'antd';
 
 import { SERVER_USER } from '../../../Config';
+
+const { Meta } = Card;
 
 
 function RightMenu(props) {
@@ -27,27 +29,40 @@ function RightMenu(props) {
     });
   }
 
-  if(user.userData && !user.userData.isAuth) {
-    return (
-      <Menu mode={props.mode}>
-        <Menu.Item key="signin">
-          <a href="/signin">Sign In</a>
-        </Menu.Item>
-        <Menu.Item key="signup">
-          <a href="/signup">Sign Up</a>
-        </Menu.Item>
-      </Menu>
-    )
+  if(user.userData) {
+    if(!user.userData.isAuth) {
+      return (
+        <Menu mode={props.mode}>
+          <Menu.Item key="signin">
+            <a href="/signin">Sign In</a>
+          </Menu.Item>
+          <Menu.Item key="signup">
+            <a href="/signup">Sign Up</a>
+          </Menu.Item>
+        </Menu>
+      )
+    }
+    else {
+      return (
+        <Menu mode={props.mode}>
+          <Menu.Item key="profile">
+            <Meta onClick={() => {navigate('/my')}} avatar={<Avatar src={`http://localhost:5000/${user.userData.profilePath}`} />} />
+          </Menu.Item>
+          <Menu.Item key="signout">
+            <a onClick={onSubmitSignOut}>Sign Out</a>
+          </Menu.Item>
+        </Menu>
+      )
+    }
   }
   else {
     return (
       <Menu mode={props.mode}>
-        <Menu.Item key="signout">
-          <a onClick={onSubmitSignOut}>Sign Out</a>
-        </Menu.Item>
+
       </Menu>
     )
   }
+  
 }
 
 export default RightMenu;

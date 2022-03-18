@@ -40,6 +40,11 @@
     padding: 10px 15px;
 }
 
+.menu .ant-menu-item .ant-card-meta {
+    padding:4px 0;
+    width:35px;
+}
+
 @media (max-width: 767px) {
     .menu-left, .menu-right {
         display: none;

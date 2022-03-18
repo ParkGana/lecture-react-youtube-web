@@ -9,6 +9,7 @@ import SignupPage from './views/User/SignupPage';
 import VideoUploadPage from './views/Video/VideoUploadPage';
 import VideoDetailPage from './views/Video/VideoDetailPage';
 import SubscribePage from './views/Video/SubscribePage';
+import MyPage from './views/User/MyPage';
 
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
               <Route exact path="/" element={<LandingPage />} />
               <Route exact path="/signin" element={<SigninPage />} />
               <Route exact path="/signup" element={<SignupPage />} />
+              <Route exact path="/my" element={<MyPage />} />
               <Route exact path="/video/upload" element={<VideoUploadPage />} />
               <Route exact path="/video/:videoId" element={<VideoDetailPage />} />
               <Route exact path="/subscribe" element={<SubscribePage />} />

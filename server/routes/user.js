@@ -71,9 +71,20 @@ router.get('/auth', auth, (req, res) => {
         email: req.user.email,
         name: req.user.name,
         role: req.user.role,
+        profilePath: req.user.profilePath,
         isAuth: true,
         isAdmin: req.user.role === 0 ? false : true
     });
+});
+
+/****************************************************************************************************
+ * 사용자 정보 가져오기
+ ****************************************************************************************************/
+router.post('/getUser', (req, res) => {
+    User.findOne({ '_id': req.body.userTo }, (err, user) => {
+        if(err) return res.status(400).json({ getUserSuccess: false });
+        return res.status(200).json({ getUserSuccess: true, user: user });
+   });
 });
 
 module.exports = router;

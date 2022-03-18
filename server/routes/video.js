@@ -126,4 +126,17 @@ router.post('/getSearchVideos', (req, res) => {
     });
 });
 
+/****************************************************************************************************
+ * 내 영상 목록 가져오기
+ ****************************************************************************************************/
+router.post('/getMyVideos', (req, res) => {
+    Video.find({ 'uploader': req.body.userTo })
+    .sort({ "createdAt": -1 })
+    .populate('uploader')
+    .exec((err, videos) => {
+        if(err) return res.status(400).json({ getMyVideosSuccess: false });
+        return res.status(200).json({ getMyVideosSuccess: true, videos: videos });
+    });
+});
+
 module.exports = router;
