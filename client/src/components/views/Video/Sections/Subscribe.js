@@ -85,7 +85,7 @@ function Subscribe(props) {
     return (
         <div className="video-detail-main-uploader">
             <div className="video-detail-main-uploader-info">
-                <Meta avatar={<Avatar src={props.video.uploader.profilePath} />} title={props.video.uploader.name} />
+                <Meta avatar={<Avatar src={`http://localhost:5000/${props.video.uploader.profilePath}`} />} title={props.video.uploader.name} />
                 <p>구독자 {SubscribeNumber}명</p>
             </div>
             {!Selfed &&

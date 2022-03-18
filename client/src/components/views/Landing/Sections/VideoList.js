@@ -37,7 +37,7 @@ function VideoList(props) {
                             </div>
                         </a>
                         <div className="video-list-video-info">
-                            <Meta avatar={<Avatar src={video.uploader.profilePath} />} title={video.title} />
+                            <Meta avatar={<Avatar src={`http://localhost:5000/${video.uploader.profilePath}`} />} title={video.title} />
                             <p>{video.uploader.name}</p>
                             <p>조회수 {video.views}회<span>|</span>{moment(video.createdAt).format('YYYY-MM-DD')}</p>
                         </div>
