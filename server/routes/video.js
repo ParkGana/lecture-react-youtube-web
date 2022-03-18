@@ -112,4 +112,18 @@ router.post('/getSearchVideos', (req, res) => {
     });
 });
 
+/****************************************************************************************************
+ * 영상 조회수 올리기
+ ****************************************************************************************************/
+ router.post('/addVideoView', (req, res) => {
+    Video.findOne({ '_id': req.body.videoId }, (err, video) => {
+        if(err) return res.status(400).json({ addVideoViewSuccess: false });
+ 
+        Video.findOneAndUpdate({ '_id': req.body.videoId }, { 'views': video.views + 1 }, (err) => {
+            if(err) return res.status(400).json({ addVideoViewSuccess: false });
+            return res.status(200).json({ addVideoViewSuccess: true });
+        });
+    });
+});
+
 module.exports = router;
