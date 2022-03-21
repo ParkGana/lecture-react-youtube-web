@@ -9,12 +9,16 @@ let auth = (req, res, next) => {
     let token = req.cookies.x_auth;
 
     User.findByToken(token, (err, userInfo) => {
-        if(err) next(err);
-        if(!userInfo) return res.json({ _id: '', isAuth: false });
-        
-        req.token = token;
-        req.user = userInfo;
-        next();
+        if(err) {
+            next(err);
+        }
+        else {
+            if(!userInfo) return res.json({ _id: '', isAuth: false });
+            
+            req.token = token;
+            req.user = userInfo;
+            next();
+        }
     });
 }
 

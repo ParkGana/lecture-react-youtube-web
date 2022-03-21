@@ -4,6 +4,7 @@ const port = 5000;
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
+const cors = require('cors');
 
 const config = require('./configs/key');
 
@@ -24,6 +25,7 @@ mongoose.connect(config.mongoURI, {
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cookieParser());
+app.use(cors());
 
 app.use('/uploads', express.static('uploads'));
 
