@@ -9,7 +9,7 @@ const { Meta } = Card;
 function ChildCommentList(props) {
     return (
         <div className="video-detail-comment-child">
-            <Meta avatar={<Avatar src={props.comment.writer.profilePath} />} title={props.comment.writer.name} />
+            <Meta avatar={<Avatar src={`http://localhost:5000/${props.comment.writer.profilePath}`} />} title={props.comment.writer.name} />
             <p>{props.comment.content}</p>
             <p>
                 <span></span>
