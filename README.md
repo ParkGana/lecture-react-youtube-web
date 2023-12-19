@@ -10,7 +10,7 @@
 
 ### 프로젝트 실행
 
-root >> npm run dev
+root >> npm run start
 
 ---
 
